@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Claunia.PropertyList;
 
@@ -19,7 +19,14 @@ namespace logic_exporter
 
     public static IEnumerable<string> GetStrings(this NSObject item)
     {
-      return ((NSArray)item).Select(x => x.ToString());
+      return ((NSArray)item).Select(x => x?.ToString() ?? "");
     }
+
+    public static NSDictionary ParseAsPropertyList(this string filePath)
+    {
+      return (NSDictionary)PropertyListParser.Parse(new FileInfo(filePath));
+    }
+
+    public static string GetValueOrDefault(this string? str, string @default = "") => str ?? @default;
   }
 }

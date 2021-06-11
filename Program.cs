@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace logic_exporter
 {
@@ -12,9 +13,10 @@ namespace logic_exporter
         return;
       }
 
-      var metadata = MetadataParser.Parse(args[1]);
+      var project = new LogicProject(args[1]);
 
-      MetadataWriter.Write(metadata);
+      Output.Write(project.Alternative.Metadata);
+      //Output.Write(project.Alternatives);
     }
 
     private static bool IsValid(string[] args) => args.Length > 1;

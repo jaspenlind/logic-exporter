@@ -2,11 +2,11 @@ using System;
 using System.Text.Json;
 namespace logic_exporter
 {
-  public static class MetadataWriter
+  public static class Output
   {
-    public static void Write(Metadata metadata)
+    public static void Write(object data)
     {
-      var json = JsonSerializer.Serialize(metadata, new JsonSerializerOptions
+      var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
       {
         WriteIndented = true
       });
