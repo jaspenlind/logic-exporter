@@ -6,7 +6,6 @@ namespace logic_exporter
   {
     public static void Main(string[] args)
     {
-
       if (!IsValid(args))
       {
         Usage();

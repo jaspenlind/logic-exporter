@@ -1,22 +1,17 @@
 using System;
-
+using System.Text.Json;
 namespace logic_exporter
 {
   public static class MetadataWriter
   {
     public static void Write(Metadata metadata)
     {
-      var (hasGrid, files, quicksamplerFiles, isTimeCodeBased, songKey, _) = metadata;
+      var json = JsonSerializer.Serialize(metadata, new JsonSerializerOptions
+      {
+        WriteIndented = true
+      });
 
-      var msg = $@"
-    {nameof(hasGrid)}={hasGrid}
-    {nameof(files)}={string.Join("\n\t", files)}
-    {nameof(quicksamplerFiles)}={string.Join("\n\t", quicksamplerFiles)}
-    {nameof(isTimeCodeBased)}={isTimeCodeBased}
-    {nameof(songKey)}={songKey}
-    ";
-
-      Console.WriteLine(msg);
+      Console.WriteLine(json);
     }
   }
 }
