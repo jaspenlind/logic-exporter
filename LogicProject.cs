@@ -6,16 +6,16 @@ namespace logic_exporter
 {
   public class LogicProject
   {
-    private readonly PathHelper path;
     private readonly Dictionary<string, LogicProjectAlternative> alternatives;
 
+    public string Path { get; init; }
     public LogicProject(string path, string selectedAlternative = "000")
     {
-      this.path = new PathHelper(path);
+      Path = path;
 
-      alternatives = this.path
+      alternatives = new PathHelper(path)
         .GetAlternatives()
-        .ToDictionary(x => x, x => CreateAlterative(x));
+        .ToDictionary(x => x, x => new LogicProjectAlternative(this, x));
 
       Alternative = alternatives[selectedAlternative];
     }
@@ -33,18 +33,5 @@ namespace logic_exporter
     }
 
     public IEnumerable<LogicProjectAlternative> Alternatives => alternatives.Values;
-    private LogicProjectAlternative CreateAlterative(string name)
-    {
-      path.SetAlternative(name);
-
-      return new LogicProjectAlternative(this, name, MetadataParser.Parse(path.Metadata));
-    }
   }
-
-  public record LogicProjectAlternative
-  (
-    LogicProject Project,
-    string Name,
-    Metadata Metadata
-  );
 }

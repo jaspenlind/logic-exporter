@@ -16,7 +16,7 @@ namespace logic_exporter
       var project = new LogicProject(args[1]);
 
       Output.Write(project.Alternative.Metadata);
-      //Output.Write(project.Alternatives);
+      //project.Alternative.DisplayState();
     }
 
     private static bool IsValid(string[] args) => args.Length > 1;
