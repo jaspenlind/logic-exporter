@@ -33,5 +33,6 @@ namespace logic_exporter
     public IEnumerable<string> GetAlternatives() => Directory
       .GetDirectories($"{Path}/Alternatives")
       .Select(x => new DirectoryInfo(x).Name);
+
   }
 }

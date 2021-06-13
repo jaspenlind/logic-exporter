@@ -9,7 +9,7 @@ namespace logic_exporter
       var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
       {
         WriteIndented = true,
-        ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
+        //ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
       });
 
       Console.WriteLine(json);

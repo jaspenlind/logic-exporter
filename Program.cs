@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace logic_exporter
@@ -15,8 +16,8 @@ namespace logic_exporter
 
       var project = new LogicProject(args[1]);
 
+      Output.Write(project.ProjectInfo);
       Output.Write(project.Alternative.Metadata);
-      //project.Alternative.DisplayState();
     }
 
     private static bool IsValid(string[] args) => args.Length > 1;
